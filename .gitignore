@@ -1,0 +1,16 @@
+# ▶️ Virtual environments
+.venv/
+.env
+.idea
+
+
+# ▶️ Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ▶️ Md
+*.md
+
+media/
