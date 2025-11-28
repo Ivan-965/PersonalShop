@@ -31,5 +31,6 @@ class FinallyCarts(Base):
         {'sqlite_autoincrement': True},
     )
 
+
     def __str__(self):
         return str(self.id)
