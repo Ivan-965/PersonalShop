@@ -8,3 +8,4 @@ def start_kb():
             keyboard=[[KeyboardButton(text="Зайти в магазин 🏪")]],
             resize_keyboard=True
     )
+

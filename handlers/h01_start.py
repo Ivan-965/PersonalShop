@@ -33,3 +33,4 @@ async def handle_start(message: Message):
 
 async def register_user(message: Message):
     pass
+
