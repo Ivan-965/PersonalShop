@@ -17,3 +17,4 @@ class Orders(Base):
 
     def __str__(self):
         return f"{self.product_name} x{self.quantity} — {self.final_price} руб"
+

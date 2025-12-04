@@ -7,3 +7,4 @@ load_dotenv()
 
 class Base(DeclarativeBase):
     pass
+
