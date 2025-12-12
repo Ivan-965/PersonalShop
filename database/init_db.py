@@ -61,5 +61,5 @@ def init_db():
         session.commit()
         print("Первичные данные категорий ")
 
-    if __name__ == "__main__":
-        init_db()
+if __name__ == "__main__":
+    init_db()
