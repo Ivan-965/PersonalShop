@@ -13,9 +13,12 @@ class Carts(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), unique=True)
 
     user_cart: Mapped['Users'] = relationship(back_populates='carts')
+    finally_id: Mapped[int] = relationship("FinallyCarts", back_populates='user_cart')
 
     def __str__(self):
         return str(self.id)
+
+
 class FinallyCarts(Base):
     __tablename__ = "finally_carts"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -30,7 +33,6 @@ class FinallyCarts(Base):
     __table_args__ = (
         {'sqlite_autoincrement': True},
     )
-
 
     def __str__(self):
         return str(self.id)

@@ -10,6 +10,8 @@ class Users(Base):
     telegram: Mapped[int] = mapped_column(BigInteger, unique=True)
     phone: Mapped[str] = mapped_column(String(20), nullable=True)
 
+
+    carts: Mapped[int] = relationship("Carts", back_populates="user_cart")
     def __str__(self):
         return self.name
 
