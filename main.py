@@ -9,7 +9,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 dp.include_router(h01_start.router)
-# dp.include_router(h02_get_contact.router)
+dp.include_router(h02_get_contact.router)
 
 
 async def main():
