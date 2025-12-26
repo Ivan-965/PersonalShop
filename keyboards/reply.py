@@ -5,12 +5,24 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder, ReplyKeyboardMarkup
 def start_kb():
     """Start keyboard."""
     return ReplyKeyboardMarkup(
-            keyboard=[[KeyboardButton(text="Зайти в магазин 🏪")]],
-            resize_keyboard=True
+        keyboard=[[KeyboardButton(text="Зайти в магазин 🏪")]],
+        resize_keyboard=True
     )
+
 
 def phone_kb():
     """кнопка для ввода телефона"""
     builder = ReplyKeyboardBuilder()
     builder.button(text='Отправьте ваш номер телефона', request_contact=True)
+    return builder.as_markup(resize_keyboard=True)
+
+
+def get_main_menu():
+    """Формирование кнопок меню."""
+    builder = ReplyKeyboardBuilder()
+    builder.button(text= "Оформить заказ ✅")
+    builder.button(text= "История 📃")
+    builder.button(text= "Корзина 🛒")
+    builder.button(text= "Настройки ⚙️")
+    builder.adjust(2, 2)
     return builder.as_markup(resize_keyboard=True)
