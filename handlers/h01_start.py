@@ -6,6 +6,8 @@ from database.utils import db_register_user
 from handlers.h02_get_contact import show_main_menu
 from keyboards.reply import start_kb, phone_kb
 
+"""Хендлер для старта и регистрации нового пользователя в боте"""
+
 router = Router()
 
 
