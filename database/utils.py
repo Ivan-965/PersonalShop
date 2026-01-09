@@ -4,6 +4,8 @@ from database.base import engine
 from database.models import Users, Carts
 from sqlalchemy import update, select
 
+"""Модуль c функциями для работы с данными в базе данных."""
+
 
 def get_session():
     return Session(engine)

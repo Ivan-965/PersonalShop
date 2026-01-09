@@ -1,5 +1,6 @@
 from aiogram.types import KeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, ReplyKeyboardMarkup
+"""Модуль для формирования кнопок меню. Типа reply"""
 
 
 def start_kb():
