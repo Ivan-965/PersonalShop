@@ -1,3 +1,4 @@
+"""Скрипт для инициализации базы данных"""
 import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker

@@ -1,3 +1,4 @@
+"""оздание модели корзины пользователя"""
 from sqlalchemy import DECIMAL, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.base import Base
