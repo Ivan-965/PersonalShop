@@ -1,8 +1,9 @@
-"""оздание модели корзины пользователя"""
 from sqlalchemy import DECIMAL, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.base import Base
 from .users import Users
+
+"""Создание модели корзины пользователя"""
 
 
 class Carts(Base):

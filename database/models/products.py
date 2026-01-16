@@ -1,8 +1,9 @@
-"""Создание таблицы products"""
 from sqlalchemy import String, DECIMAL, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.base import Base
 from .categories import Categories
+
+"""Создание таблицы products"""
 
 
 class Products(Base):
