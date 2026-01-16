@@ -1,8 +1,9 @@
-"""крипт получения контакта пользователя"""
 from aiogram import Router, F
 from aiogram.types import Message
 from database.utils import db_update_user, db_create_user_cart
 from keyboards.reply import get_main_menu
+
+"""Скрипт получения контакта пользователя"""
 
 router = Router()
 

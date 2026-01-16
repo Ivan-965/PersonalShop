@@ -1,7 +1,9 @@
-"""Создание таблицы категорий товаров"""
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database.base import Base
+
+"""Создание таблицы категорий товаров"""
+
 
 class Categories(Base):
     __tablename__ = "categories"
@@ -12,5 +14,3 @@ class Categories(Base):
 
     def __str__(self):
         return self.category_name
-
-

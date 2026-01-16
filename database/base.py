@@ -1,8 +1,9 @@
-"""Подготовка базы данных"""
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase
+
+"""Подготовка базы данных"""
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
@@ -23,6 +24,7 @@ DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_POR
 print("DATABASE_URL =", repr(DATABASE_URL))
 
 engine = create_engine(DATABASE_URL, echo=True, future=True)
+
 
 class Base(DeclarativeBase):
     pass

@@ -1,10 +1,11 @@
-"""Скрипт для инициализации базы данных"""
 import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker
 from database.base import Base
 from database.models import Users, Carts, FinallyCarts, Categories, Products, Orders
 from dotenv import load_dotenv
+
+"""Скрипт для инициализации базы данных"""
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
@@ -41,11 +42,13 @@ def init_db():
             ("Торты", "Прага", 100, "бисквит, крем, пропитка, глазурь", "media/praga_cake.jpg"),
             ("Торты", "Рождественское полено", 80, "мука, яйца, сахар, масло, соль", "media/poleno_cake.jpg"),
             ("Сыр", "Российский", 280, "мягкий сливочный вкус, натуральное производство", "media/russian_cheese.jpg"),
-            ("Сыр", "Голландский Гауда", 350, "классический голландский сыр, насыщенный аромат", "media/gouda_cheese.jpg"),
+            ("Сыр", "Голландский Гауда", 350, "классический голландский сыр, насыщенный аромат",
+             "media/gouda_cheese.jpg"),
             ("Сыр", "Фета", 320, "соленый, рассыпчатый греческий сыр", "media/feta_cheese.jpg"),
             ("Печенье", "Овсяное", 120, "нежное овсяное печенье с кусочками шоколада", "media/oatmeal_cookie.jpg"),
             ("Печенье", "Сахарное", 100, "хрустящее традиционное песочное печенье", "media/sugar_cookie.jpg"),
-            ("Печенье", "Имбирное", 150, "специальное пряное имбирное печенье с ароматом корицы", "media/gingerbread_cookie.jpg")]
+            ("Печенье", "Имбирное", 150, "специальное пряное имбирное печенье с ароматом корицы",
+             "media/gingerbread_cookie.jpg")]
 
         for category_name, name, price, desc, image in products:
             product_exists = session.scalar(select(Products).filter_by(product_name=name))
@@ -61,6 +64,7 @@ def init_db():
 
         session.commit()
         print("Первичные данные категорий ")
+
 
 if __name__ == "__main__":
     init_db()
