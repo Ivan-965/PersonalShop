@@ -73,6 +73,7 @@ def db_get_last_orders(chat_id, limit=5):
             select(Orders).
             join(Carts, Orders.cart_id == Carts.id).
             join(Users, Carts.user_id == Users.id).
+            where(Users.telegram == chat_id).
             order_by(Orders.id.desc()).limit(limit)
         )
         return session.scalars(query).all()
