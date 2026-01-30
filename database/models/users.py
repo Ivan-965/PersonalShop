@@ -11,7 +11,7 @@ class Users(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(70))
     telegram: Mapped[int] = mapped_column(BigInteger, unique=True)
-    phone: Mapped[str] = mapped_column(String(20), nullable=True)
+    phone: Mapped[str] =  mapped_column(String(20), nullable=True)
 
     carts: Mapped[int] = relationship("Carts", back_populates="user_cart")
 
