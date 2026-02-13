@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from database.base import engine
-from database.models import Users, Carts, Categories, FinallyCarts, Orders
+from database.models import Users, Carts, Categories, FinallyCarts, Orders, Products
 from sqlalchemy import update, select, func, join
 
 """Модуль c функциями для работы с данными в базе данных."""
@@ -76,4 +76,12 @@ def db_get_last_orders(chat_id, limit=5):
             where(Users.telegram == chat_id).
             order_by(Orders.id.desc()).limit(limit)
         )
+        return session.scalars(query).all()
+
+
+def db_get_product(category_id):
+    """получение продуктов из категорий."""
+
+    with get_session() as session:
+        query = select(Products).where(Products.category_id == category_id)
         return session.scalars(query).all()
