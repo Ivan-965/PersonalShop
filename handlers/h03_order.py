@@ -18,7 +18,7 @@ async def make_order(message: Message, bot: Bot):
     """Оброботка кнопки Оформить заказ с дальнейшим переходом в котегории товаров"""
     chat_id = message.chat.id
     await bot.send_message(chat_id, "Переходим...", reply_markup=back_to_main_menu())
-    await message.answer(text="Выберете категорию:", reply_markup=generate_category_menu(chat_id))
+    await message.answer(text="Выберете категорию:🔽", reply_markup=generate_category_menu(chat_id))
 
 
 @router.message(F.text == "История 📃")
@@ -39,7 +39,7 @@ async def order_history(message: Message):
 
     await message.answer(text)
 
-@router.message(F.text == "Главное меню")
+@router.message(F.text == "Главное меню🏠")
 async def handle_main_menu(message: Message, bot: Bot):
     """Обработка кнопки Главное меню и удаление предыдущего сообщения"""
     try:
