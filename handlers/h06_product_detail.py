@@ -3,7 +3,8 @@ from aiogram.types import FSInputFile, CallbackQuery
 
 from bot_utils.message_uitils import text_for_caption
 from database.utils import db_get_product_by_id, db_get_user_cart, db_add_or_update_item
-from keyboards.inline import generate_category_menu
+from keyboards.inline import generate_category_menu, quantity_cart_controls
+from keyboards.reply import phone_kb
 
 router = Router()
 
@@ -47,3 +48,8 @@ async def show_product_detail(callback: CallbackQuery, bot: Bot):
 
     else:
          await ask_for_phone(chat_id, bot)
+
+async def ask_for_phone(chat_id: int, bot: Bot):
+    """Запрос номера телефона пользователя при отсутствии авторизации"""
+    await bot.send_message(chat_id=chat_id, text= "Предоставте свой номер для оформления заказа",
+                           reply_markup= phone_kb())
