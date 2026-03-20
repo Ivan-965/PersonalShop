@@ -2,7 +2,7 @@ from aiogram import Router, F, Bot
 from aiogram.types import FSInputFile, CallbackQuery
 
 from bot_utils.message_uitils import text_for_caption
-from database.utils import db_get_product_by_id, db_get_user_cart, db_add_or_update_item
+from database.utils import db_get_product_by_id, db_get_user_cart, db_add_or_update_item, db_get_all_category
 from keyboards.inline import generate_category_menu, quantity_cart_controls
 from keyboards.reply import phone_kb
 
@@ -53,3 +53,27 @@ async def ask_for_phone(chat_id: int, bot: Bot):
     """Запрос номера телефона пользователя при отсутствии авторизации"""
     await bot.send_message(chat_id=chat_id, text= "Предоставте свой номер для оформления заказа",
                            reply_markup= phone_kb())
+
+
+@router.callback_query(F.data == "from_detail_to_category")
+async def handle_back_to_category(callback: CallbackQuery, bot: Bot):
+    """Возврат в меню категорий из детальной карточки товара"""
+    chat_id = callback.message.chat.id
+    message_id = callback.message.message_id
+    try:
+        await bot.delete_message(chat_id=chat_id, message_id=message_id)
+
+    except Exception as e :
+        print(f"Сообщение не найдено, ошибка : {e}")
+
+    categories = db_get_all_category()
+
+    if not categories:
+        await bot.send_message(chat_id= chat_id,
+                               text= "Категории не найдены.")
+        return
+    keyboard = generate_category_menu(chat_id)
+    await bot.send_message(chat_id= chat_id,
+                           text="Выберите нужную вам категорию",
+                           reply_markup=keyboard)
+    await callback.answer()
