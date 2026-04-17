@@ -1,7 +1,8 @@
 """Главный файл проекта. В нём запускается бот."""
 import asyncio
 from aiogram import Bot, Dispatcher
-from handlers import h01_start, h02_get_contact, h03_order, h04_categories, h05_navigation, h06_product_detail
+from handlers import h01_start, h02_get_contact, h03_order, h04_categories, h05_navigation, h06_product_detail, \
+    h07_cart_quantity
 from config import TOKEN
 
 
@@ -15,6 +16,7 @@ dp.include_router(h03_order.router)
 dp.include_router(h04_categories.router)
 dp.include_router(h05_navigation.router)
 dp.include_router(h06_product_detail.router)
+dp.include_router(h07_cart_quantity.router)
 
 async def main():
     await dp.start_polling(bot)
