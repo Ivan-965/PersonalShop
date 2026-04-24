@@ -41,7 +41,7 @@ def quantity_cart_controls(quantity = 1):
     builder.button(text= "➖" ,callback_data ="action -")
     builder.button(text= str(quantity), callback_data ="quantity")
     builder.button(text= "➕" ,callback_data ="action +")
-    builder.button(text= "Добавить в коризину", callback_data="положить товар в корзину")
+    builder.button(text= "Добавить в коризину", callback_data="положить в корзину")
     builder.button(text= "🔙 Назад", callback_data= "from_detail_to_category")
     builder.adjust(3, 1, 1)
 
