@@ -46,3 +46,6 @@ def quantity_cart_controls(quantity = 1):
     builder.adjust(3, 1, 1)
 
     return builder.as_markup(resize_keyboard= True)
+
+def cart_actions_kb():
+    pass
