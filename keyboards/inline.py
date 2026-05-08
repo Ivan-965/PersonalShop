@@ -35,17 +35,27 @@ def show_product_by_category(category_id: int):
     )
     return builder.as_markup()
 
-def quantity_cart_controls(quantity = 1):
+
+def quantity_cart_controls(quantity=1):
     """Кнопка для изменения количества товара"""
     builder = InlineKeyboardBuilder()
-    builder.button(text= "➖" ,callback_data ="action -")
-    builder.button(text= str(quantity), callback_data ="quantity")
-    builder.button(text= "➕" ,callback_data ="action +")
-    builder.button(text= "Добавить в коризину", callback_data="положить в корзину")
-    builder.button(text= "🔙 Назад", callback_data= "from_detail_to_category")
+    builder.button(text="➖", callback_data="action -")
+    builder.button(text=str(quantity), callback_data="quantity")
+    builder.button(text="➕", callback_data="action +")
+    builder.button(text="Добавить в коризину", callback_data="положить в корзину")
+    builder.button(text="🔙 Назад", callback_data="from_detail_to_category")
     builder.adjust(3, 1, 1)
 
-    return builder.as_markup(resize_keyboard= True)
+    return builder.as_markup(resize_keyboard=True)
+
 
 def cart_actions_kb():
-    pass
+    """Оформление заказа, добавление и удаление из корзины."""
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        InlineKeyboardButton(text="Оформить заказ!📦", callback_data="confirm_order"),
+        InlineKeyboardButton(text= "Удалить товары.🗑️", callback_data="remove_item"),
+        InlineKeyboardButton(text= "Добавить товар.®️", callback_data="add_item")
+        )
+    builder.adjust(1,2)
+    return builder.as_markup(resize_keyboard=True)
