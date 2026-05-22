@@ -14,13 +14,21 @@ async def confirm_order(callback: CallbackQuery, bot: Bot):
 
     user = callback.message.from_user
     phone = db_get_user_phone(user.id)
-    mention = f"<a href='tg://user?id={user.id}'> {callback.user_full_name}</a>"
+    mention = f"<a href='tg://user?id={user.id}'> {user.full_name}</a>"
 
     user_text = f"Новый заказ от {mention}\nТелефон:{phone}."
-    context = counting_products()
-    print(context)
+    context = counting_products(user.id, user_text)
+    print("КОНТЕКС", context)
 
     if not context:
         await callback.message.edit_text("Корзина пустая!")
         await callback.answer()
         return
+
+    if not MANAGER_ID:
+        await callback.message.edit_text("Оформление заказа невозможно с пустой корзиной")
+        await callback.answer()
+        return
+
+    count, text, tota_price, cart_id = context
+    await bot.send_message(MANAGER_ID, text, parse_mode="HTML")

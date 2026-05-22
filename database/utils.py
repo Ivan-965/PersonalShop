@@ -177,6 +177,7 @@ def db_get_cart_items(chat_id):
             .filter(Users.telegram == chat_id)
             .all()
         )
+        print(items)
 
         result = []
 
@@ -195,4 +196,4 @@ def db_get_user_phone(chat_id):
     """Функция получения номера телфона клиента"""
     with get_session() as session:
         query = select(Users.phone).where(Users.telegram == chat_id)
-        return  session.execute(query).fetchone()[0]
+        return  session.execute(query).scalar()
