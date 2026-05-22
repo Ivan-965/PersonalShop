@@ -18,6 +18,7 @@ async def open_cart(callback: CallbackQuery):
     """Обработка инлан кнопки "Корзина заказа" """
     chat_id = callback.from_user.id
     await show_cart(chat_id=chat_id, send_fn=callback.message.answer)
+    await callback.answer()
 
 async def show_cart(chat_id: int, send_fn):
     """Показ содердимого корзины"""

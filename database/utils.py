@@ -167,8 +167,8 @@ def db_get_product_by_name(product_name):
         return session.scalar(query)
 
 
-def db_get_cart_items(chat_id):
-    """Получение товаров из корзины пользователя"""
+def db_get_cart_items(chat_id: int):
+    """возвращает товары из корзины пользователя"""
     with get_session() as session:
         items = (
             session.query(FinallyCarts)
@@ -177,20 +177,19 @@ def db_get_cart_items(chat_id):
             .filter(Users.telegram == chat_id)
             .all()
         )
-        print(items)
+        print("########", items)
 
         result = []
-
         for item in items:
-            result.append(
-                {
-                    "product_id": item.product_id,
-                    "product_name": item.product_name,
-                    "quantity": item.quantity,
-                    "final_price": float(item.final_price)
-                })
+            result.append({
+                "product_id": item.product_id,
+                "product_name": item.product_name,
+                "quantity": item.quantity,
+                "final_price": float(item.final_price)
+            })
 
         return result
+
 
 def db_get_user_phone(chat_id):
     """Функция получения номера телфона клиента"""
