@@ -12,13 +12,13 @@ router = Router()
 async def confirm_order(callback: CallbackQuery, bot: Bot):
     """Подтверждение заказа"""
 
-    user = callback.message.from_user
+    user = callback.from_user
     phone = db_get_user_phone(user.id)
     mention = f"<a href='tg://user?id={user.id}'> {user.full_name}</a>"
 
     user_text = f"Новый заказ от {mention}\nТелефон:{phone}."
     context = counting_products(user.id, user_text)
-    print("КОНТЕКС", context)
+    print("КОНТЕКСТ", context)
 
     if not context:
         await callback.message.edit_text("Корзина пустая!")
