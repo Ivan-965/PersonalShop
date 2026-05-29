@@ -195,4 +195,23 @@ def db_get_user_phone(chat_id):
     """Функция получения номера телфона клиента"""
     with get_session() as session:
         query = select(Users.phone).where(Users.telegram == chat_id)
-        return  session.execute(query).scalar()
+        return session.execute(query).scalar()
+
+
+def db_save_order_history(chat_id):
+    """сохранение истории заказов"""
+    cart = db_get_user_cart(chat_id)
+
+    if not cart:
+        return None
+
+    with get_session() as session:
+        final_items = session.query(FinallyCarts).filter_by(cart_id=cart.id).all()
+        for item in final_items:
+            session.add(Orders(
+                cart_id=item.cart_id,
+                product_name=item.product_name,
+                quantity=item.quantity,
+                final_price=item.final_price
+            ))
+        session.commit()
