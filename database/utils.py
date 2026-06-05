@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from database.base import engine
 from database.models import Users, Carts, Categories, FinallyCarts, Orders, Products
-from sqlalchemy import update, select, func, join, DECIMAL
+from sqlalchemy import update, select, func, join, DECIMAL, delete
 
 """Модуль c функциями для работы с данными в базе данных."""
 
@@ -214,4 +214,17 @@ def db_save_order_history(chat_id):
                 quantity=item.quantity,
                 final_price=item.final_price
             ))
+        session.commit()
+
+def db_clear_finally_cart(chat_id):
+    """Очистка товаров в финальной корзине после оформление покупки"""
+
+    cart = db_get_user_cart(chat_id)
+
+    if not cart:
+        return
+
+    with get_session() as session:
+        query = delete(FinallyCarts).where(FinallyCarts.cart_id == cart.id)
+        session.execute(query)
         session.commit()

@@ -3,7 +3,7 @@ from aiogram.types import CallbackQuery
 
 from bot_utils.counting_products import counting_products
 from config import MANAGER_ID
-from database.utils import db_get_user_phone, db_save_order_history
+from database.utils import db_get_user_phone, db_save_order_history, db_clear_finally_cart
 
 router = Router()
 
@@ -34,3 +34,7 @@ async def confirm_order(callback: CallbackQuery, bot: Bot):
     await bot.send_message(MANAGER_ID, text, parse_mode="HTML")
 
     db_save_order_history(user.id)
+    db_clear_finally_cart(user.id)
+
+    await callback.message.edit_text("Ждите обратной сваязи о доставке.")
+    await callback.answer("Заказ оформлен✅")
