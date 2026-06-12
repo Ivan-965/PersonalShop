@@ -228,3 +228,14 @@ def db_clear_finally_cart(chat_id):
         query = delete(FinallyCarts).where(FinallyCarts.cart_id == cart.id)
         session.execute(query)
         session.commit()
+
+def db_get_product_for_delete(chat_id):
+    """Удаления товара из корзины"""
+    with get_session() as session:
+        query = (
+            select(FinallyCarts.id, FinallyCarts.product_name).
+            join(Carts, FinallyCarts.cart_id == Carts.id).
+            join(Users, Carts.user_id == Users.id).
+            filter(Users.telegram == chat_id)
+        )
+        return session.execute(query).fetchall()
