@@ -239,3 +239,6 @@ def db_get_product_for_delete(chat_id):
             filter(Users.telegram == chat_id)
         )
         return session.execute(query).fetchall()
+
+def db_increase_product_quantity(cart_id):
+    pass
