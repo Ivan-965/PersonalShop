@@ -1,20 +1,21 @@
-def generate_cart_text(cart_items):
+def generate_cart_text(cart_items: list) -> str:
     """Генерация о содержимом корзины"""
 
     if not cart_items:
-        return "Коризна пуста🗑️"
+        return " Ваша корзина пуста."
 
-    text = "Содержимое корзины🗑️\n"
+    text = " Содержимое корзины:\n\n"
     total = 0.0
 
     for item in cart_items:
-        name = item.get("product_name", "Товар не найден")
-        quantity = item.get("quantity", 0)
-        final_price = item.get("final_price", 0)
+        subtotal = float(item["final_price"])
+        total += subtotal
 
-        total += float(final_price)
+        text += (
+            f"{item['product_name']} — "
+            f"{item['quantity']} шт. — "
+            f"{subtotal:.2f} руб\n"
+        )
 
-        text += f"{name}: {quantity}, {final_price}₽\n"
-
-    text += f"\nИтого: {total} руб."
+    text += f"\n Итого: {total:.2f} руб"
     return text
