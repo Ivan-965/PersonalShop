@@ -276,3 +276,9 @@ def db_decrease_product_quantity(finally_cart_id):
             item.final_price = float(product.price) * item.quantity
         session.commit()
         return True
+
+def db_update_language(telegram_id, language):
+    """Обновление языка"""
+    with get_session() as session:
+        session.execute(update(Users).where(Users.telegram == telegram_id).values(language=language))
+        session.commit()
