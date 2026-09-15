@@ -71,3 +71,12 @@ def get_settings_menu():
     builder.button(text= "Назад", callback_data= "back_to_menu")
     builder.adjust(1)
     return builder.as_markup()
+
+def get_language_keyboard():
+    """меню выбора языка"""
+    builder = InlineKeyboardBuilder()
+    builder.button(text= "ru Русский", callback_data= "lang_ru")
+    builder.button(text= "en Английский", callback_data= "lang_en")
+    builder.button(text= "Назад", callback_data= "back_to_settings")
+    builder.adjust(1)
+    return builder.as_markup()
