@@ -80,3 +80,11 @@ def get_language_keyboard():
     builder.button(text= "Назад", callback_data= "back_to_settings")
     builder.adjust(1)
     return builder.as_markup()
+
+def delete_account_kb():
+    """подтверждение удаления аккаунта"""
+    builder = InlineKeyboardBuilder()
+    builder.button(text=' Да ', callback_data='confirm_delete')
+    builder.button(text=' Нет ', callback_data='settings_menu')
+    builder.adjust(1)
+    return builder.as_markup()

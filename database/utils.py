@@ -282,3 +282,7 @@ def db_update_language(telegram_id, language):
     with get_session() as session:
         session.execute(update(Users).where(Users.telegram == telegram_id).values(language=language))
         session.commit()
+
+def db_delete_user_by_telegram_id(telegram_id):
+    """Удаление аккаунта пользователя по его Telegram_id"""
+    pass
