@@ -15,4 +15,4 @@ __pycache__/
 
 media/
 
-*sqllite3
+*.sqlite3
