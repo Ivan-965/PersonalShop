@@ -283,6 +283,25 @@ def db_update_language(telegram_id, language):
         session.execute(update(Users).where(Users.telegram == telegram_id).values(language=language))
         session.commit()
 
-def db_delete_user_by_telegram_id(telegram_id):
+def db_delete_user_by_telegram_id(chat_id):
     """Удаление аккаунта пользователя по его Telegram_id"""
-    pass
+    try:
+        with get_session() as session:
+            user = session.scalar(select(Users).where(Users.telegram == chat_id))
+            if not user:
+                return False
+
+            cart = session.scalar(select(Carts).where(Carts.user_id == user.id))
+            if cart:
+                session.execute(delete(Orders).where(FinallyCarts.cart_id == cart.id))
+                session.execute(delete(FinallyCarts).where(FinallyCarts.cart_id == cart.id))
+                session.execute(delete(Carts).where(Carts.id == cart.id))
+
+            session.execute(delete(Users).where(Users.id == user.id))
+            session.commit()
+            return True
+
+    except Exception as e:
+        print(f"Error deleting user: {e}")
+        return False
+    
