@@ -14,3 +14,13 @@ class Users(models.Model):
 
     def __str__(self):
         return self.name
+      
+class Categories(models.Model):
+    category_name = models.CharField(max_length=20, unique=True)
+
+    class Meta:
+        db_table = 'categories'
+        managed = False
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['id']
