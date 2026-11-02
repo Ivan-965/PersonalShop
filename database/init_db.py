@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine, select, text
 from sqlalchemy.orm import sessionmaker
 from database.base import Base
 from database.models import Users, Carts, FinallyCarts, Categories, Products, Orders
@@ -16,12 +16,34 @@ DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
 DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-engine = create_engine(DATABASE_URL, echo=True, future=True)
+engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
+def _create_database():
+    """Создаёт базу данных, если она не существует"""
+    default_url = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/postgres"
+    default_engine = create_engine(default_url, echo=False)
+
+    with default_engine.connect() as conn:
+        conn.execute(text("COMMIT"))
+        result = conn.execute(
+            text("SELECT 1 FROM pg_database WHERE datname = :dbname"),
+            {"dbname": DB_NAME}
+        ).scalar()
+
+        if not result:
+            print(f"создаём базу данных '{DB_NAME}'...")
+            conn.execute(text(f"CREATE DATABASE {DB_NAME}"))
+            print(f"База данных '{DB_NAME}' создана")
+        else:
+            print(f"База данных '{DB_NAME}' уже существует")
+
+
 def init_db():
-    print("создаём таблицы")
+    _create_database()
+
+    print("создаём таблицы...")
     Base.metadata.create_all(engine)
     print('Таблицы gotovu')
 
