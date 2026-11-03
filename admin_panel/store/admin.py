@@ -16,11 +16,19 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product_name', 'category', 'price')
+    list_display = ('id', 'product_name', 'category', 'display_price')
+    list_filter = ('category',)
+    list_per_page = 10
     search_fields = ('product_name', 'category')
+    ordering = ('product_name',)
+
+    @admin.display(description='Стоимость')
+    def display_price(self, obj):
+        return f'{obj.price:.2f}₽'
 
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
     list_display = ('id', 'product_name', 'quantity', 'final_price', 'created_at')
     search_fields = ('product_name', 'created_at',)
+

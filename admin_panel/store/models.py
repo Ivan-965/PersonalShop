@@ -18,7 +18,7 @@ class Users(models.Model):
 
 
 class Categories(models.Model):
-    category_name = models.CharField(max_length=20, unique=True)
+    category_name = models.CharField(max_length=20, unique=True, verbose_name='Название')
 
     class Meta:
         db_table = 'categories'
@@ -27,13 +27,16 @@ class Categories(models.Model):
         verbose_name_plural = 'Категории'
         ordering = ['id']
 
+    def __str__(self):
+        return self.category_name
+
 
 class Products(models.Model):
-    category = models.ForeignKey(Categories, on_delete=models.PROTECT, related_name='products')
-    product_name = models.CharField(max_length=30, unique=True)
-    description = models.CharField(max_length=255)
-    image = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='products', verbose_name='Категория')
+    product_name = models.CharField(max_length=30, unique=True, verbose_name='Название')
+    description = models.CharField(max_length=255, verbose_name='Описание')
+    image = models.CharField(max_length=255,verbose_name='Изображение')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
     class Meta:
         db_table = 'products'
