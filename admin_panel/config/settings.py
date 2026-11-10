@@ -14,6 +14,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -92,4 +94,20 @@ MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
+}
+
+JAZZMIN_SETTINGS = {
+    'site_title': 'Storx',
+    'site_header': 'Panel of store',
+    'site_brand': 'Store_brand',
+    'welcome': 'Welcome',
+
+    'search_model': ['store.Users', 'store.Products', 'store.Categories'],
+
+    'topmenu-links': [{
+        'name': 'Главная'
+    }],
+    'icons': {'store.Users': 'fas fa-User',
+              'store.Products': 'fas fa-cookie',
+              'store.Orders': 'fas fa-tag',}
 }
