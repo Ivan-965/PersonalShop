@@ -1,0 +1,19 @@
+
+.app-footer {
+    font-size: 0 !important;
+    padding: 10px 16px !important;
+    margin: 0 !important;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.app-footer .float-end {
+    display: none !important;
+}
+
+.app-footer::before {
+    content: "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂";
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+}

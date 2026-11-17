@@ -2,12 +2,11 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR.parent
 load_dotenv(PROJECT_ROOT / '.env')
 
-SECRET_KEY = 'django-insecure-wve!$@ditfsn5$=e&w+fge56jp8cf)pv(t)b&%tt6mk$!lr$+o'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DEBUG = True
 
@@ -101,13 +100,40 @@ JAZZMIN_SETTINGS = {
     'site_header': 'Panel of store',
     'site_brand': 'Store_brand',
     'welcome': 'Welcome',
+    'custom_css': 'css/custom_admin.css',
 
     'search_model': ['store.Users', 'store.Products', 'store.Categories'],
+    'copyright': 'Store',
 
-    'topmenu-links': [{
-        'name': 'Главная'
-    }],
+    'topmenu_links': [{
+        'name': 'Главная',
+        'url': 'admin:index'
+    },
+        {'name': 'ТГ-бот магазина',
+         'url': 'https://t.me/P_shop404Bot',
+         'new_window': True,
+         }, ],
     'icons': {'store.Users': 'fas fa-User',
               'store.Products': 'fas fa-cookie',
-              'store.Orders': 'fas fa-tag',}
+              'store.Orders': 'fas fa-tag', },
+    'show_sidebar': True,
+    'navigation_expanded': True,
+    'hide_apps': [],
+
+    'order_with_respect_to': ['store', 'auth']
+
+}
+
+JAZZMIN_UI_TWEAKS = {
+    'theme': 'sketchy',
+    'navbar_small_text': True,
+    'footer_small_text': True,
+    'body_small_text': True,
+    'brand_color': 'navbar-dark-primary',
+    'accent': 'accent-warning',
+
+    'navbar': 'navbar-dark navbar-primary navbar-shadow',
+    'no_navbar_border': True,
+    'sidebar': 'sidebar-dark-primary',
+    'sidebar_nav_small_text': True,
 }
