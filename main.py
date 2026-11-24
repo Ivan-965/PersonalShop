@@ -5,7 +5,6 @@ from handlers import h01_start, h02_get_contact, h03_order, h04_categories, h05_
     h07_cart_quantity, h08_add_to_cart, h09_open_cart, h10_confirm_order, h11_cart_modify, h12_settings, h13_language
 from config import TOKEN
 
-
 bot = Bot(token=TOKEN)
 
 dp = Dispatcher()
