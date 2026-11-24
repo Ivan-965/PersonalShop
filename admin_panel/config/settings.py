@@ -120,20 +120,38 @@ JAZZMIN_SETTINGS = {
     'navigation_expanded': True,
     'hide_apps': [],
 
-    'order_with_respect_to': ['store', 'auth']
+    'order_with_respect_to': ['store', 'auth'],
 
 }
+#от учителя
+'''JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",  # другие: darkly, cyborg, journal, lux, minty, solar, etc, flatly
+
+    "navbar_small_text": True,
+    "footer_small_text": True,
+    "body_small_text": True,
+
+    "brand_colour": "navbar-warning",
+    "accent": "accent-warning",
+
+    "navbar": "navbar-warning navbar-light",
+    "no_navbar_border": True,
+
+    "sidebar": "sidebar-light-info",
+    "sidebar_nav_small_text": True,
+
+}'''
 
 JAZZMIN_UI_TWEAKS = {
-    'theme': 'sketchy',
-    'navbar_small_text': True,
-    'footer_small_text': True,
-    'body_small_text': True,
-    'brand_color': 'navbar-dark-primary',
-    'accent': 'accent-warning',
-
-    'navbar': 'navbar-dark navbar-primary navbar-shadow',
-    'no_navbar_border': True,
-    'sidebar': 'sidebar-dark-primary',
-    'sidebar_nav_small_text': True,
+    "theme": "darkly",
+    "default_theme_mode": "dark",
+    "accent": "accent-info",
+    "navbar": "navbar-dark bg-dark",
+    "no_navbar_border": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": True,
+    "footer_small_text": True,
+    "body_small_text": True,
+    "btn_default": "btn-outline-light",
+    "whole_navbar": False,
 }
