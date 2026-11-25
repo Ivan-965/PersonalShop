@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -110,7 +110,7 @@ JAZZMIN_SETTINGS = {
         'url': 'admin:index'
     },
         {'name': 'ТГ-бот магазина',
-         'url': 'https://t.me/P_shop404Bot',
+         'url': 'https://telegram.me/P_shop404Bot',
          'new_window': True,
          }, ],
     'icons': {'store.Users': 'fas fa-User',
